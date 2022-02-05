@@ -115,20 +115,20 @@ function AutoDrive:onRegisterActionEvents(_, isOnActiveVehicle)
         end
     end
 end
-
+AutoDrive.baseXmlKey = "."..g_currentModName..".AutoDrive"
 function AutoDrive.initSpecialization()
     -- print("Calling AutoDrive initSpecialization")
     local schema = Vehicle.xmlSchema
     schema:setXMLSpecializationType("AutoDrive")
-
-    schema:register(XMLValueType.FLOAT, "vehicle.AutoDrive#followDistance", "Follow distance for harveste unloading", 1)
+    local xmlPath = "vehicles.vehicle(?)"..AutoDrive.baseXmlKey
+    schema:register(XMLValueType.FLOAT, xmlPath.."#followDistance", "Follow distance for harveste unloading", 1)
     schema:setXMLSpecializationType()
 
     local schemaSavegame = Vehicle.xmlSchemaSavegame
 
     for settingName, setting in pairs(AutoDrive.settings) do
         if setting.isVehicleSpecific then
-            schemaSavegame:register(XMLValueType.INT, "vehicles.vehicle(?).AutoDrive#" .. settingName, setting.text, setting.default)
+            schemaSavegame:register(XMLValueType.INT,  xmlPath.."#" .. settingName, setting.text, setting.default)
         end
     end
 
@@ -228,7 +228,7 @@ function AutoDrive:onPostLoad(savegame)
 -- Logging.info("[AD] AutoDrive:onPostLoad savegame.xmlFile ->%s<-", tostring(savegame.xmlFile))
             local xmlFile = savegame.xmlFile
             -- local xmlFile = loadXMLFile("vehicleXML", savegame.xmlFile)
-            local key = savegame.key .. ".AutoDrive"
+            local key = savegame.key .. AutoDrive.baseXmlKey
 -- Logging.info("[AD] AutoDrive:onPostLoad key ->%s<-", tostring(key))
             -- print("Trying to load xml keys from: " .. key)
 
@@ -488,7 +488,9 @@ function AutoDrive:saveToXMLFile(xmlFile, key, usedModNames)
     if self.ad == nil or self.ad.stateModule == nil then
         return
     end
+
     local adKey = string.gsub(key, "FS22_AutoDrive.AutoDrive", "AutoDrive")
+
 
     --if not xmlFile:hasProperty(key) then
         --xmlFile:setValue(adKey, {})
@@ -501,13 +503,8 @@ function AutoDrive:saveToXMLFile(xmlFile, key, usedModNames)
         if setting.isVehicleSpecific and self.ad.settings ~= nil and self.ad.settings[settingName] ~= nil then
             xmlFile:setValue(adKey .. "#" .. settingName, self.ad.settings[settingName].current)
         end
-    end
 
     if self.ad.groups ~= nil then
-        local combinedString = ""
-        for groupName, _ in pairs(ADGraphManager:getGroups()) do
-            for myGroupName, value in pairs(self.ad.groups) do
-                if groupName == myGroupName then
                     if string.len(combinedString) > 0 then
                         combinedString = combinedString .. ";"
                     end
