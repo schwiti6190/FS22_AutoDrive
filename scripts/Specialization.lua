@@ -481,12 +481,13 @@ function AutoDrive:onUpdate(dt)
     self.ad.mapMarkerSelected_Unload = self.ad.stateModule:getSecondMarkerId()
 end
 
-function AutoDrive:saveToXMLFile(xmlFile, key, usedModNames)
+function AutoDrive:saveToXMLFile(xmlFile, adKey, usedModNames)
     if self.ad == nil or self.ad.stateModule == nil then
         return
     end
 
-    local adKey = string.gsub(key, "FS22_AutoDrive.AutoDrive", "AutoDrive")
+    local adKey = string.gsub(adKey, "FS22_AutoDrive.AutoDrive", "AutoDrive")
+
 
 
     --if not xmlFile:hasProperty(key) then
