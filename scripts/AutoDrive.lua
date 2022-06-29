@@ -254,6 +254,7 @@ function AutoDrive:loadMap(name)
 
 	ADMultipleTargetsManager:load()
 	-- AutoDrive.initTelemetry()
+	g_adEditor:load()
 
 	InGameMenuAIFrame.onFrameOpen = Utils.appendedFunction(InGameMenuAIFrame.onFrameOpen, AutoDrive.onAIFrameOpen)
 	InGameMenuAIFrame.onFrameClose = Utils.appendedFunction(InGameMenuAIFrame.onFrameClose, AutoDrive.onAIFrameClose)
@@ -263,7 +264,6 @@ function AutoDrive:loadMap(name)
 	InGameMenuAIFrame.setMapSelectionItem = Utils.overwrittenFunction(InGameMenuAIFrame.setMapSelectionItem, AutoDrive.InGameMenuAIFrameSetMapSelectionItem)
 	MapHotspot.getRenderLast = Utils.overwrittenFunction(MapHotspot.getRenderLast, AutoDrive.MapHotspotGetRenderLast)
 
-	AutoDrive.courseEditor = ADEditorGUI.new()
 end
 
 function AutoDrive:onAIFrameOpen()
