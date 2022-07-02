@@ -115,23 +115,21 @@ function AutoDrive:onRegisterActionEvents(_, isOnActiveVehicle)
         end
     end
 end
-AutoDrive.baseXmlKey = "."..g_currentModName..".AutoDrive"
+
 function AutoDrive.initSpecialization()
     -- print("Calling AutoDrive initSpecialization")
     local schema = Vehicle.xmlSchema
     schema:setXMLSpecializationType("AutoDrive")
-    local xmlPath = "vehicles.vehicle(?)"..AutoDrive.baseXmlKey
-    schema:register(XMLValueType.FLOAT, xmlPath.."#followDistance", "Follow distance for harveste unloading", 1)
+    schema:register(XMLValueType.FLOAT, "vehicle.AutoDrive#followDistance", "Follow distance for harveste unloading", 1)
     schema:setXMLSpecializationType()
 
     local schemaSavegame = Vehicle.xmlSchemaSavegame
 
     for settingName, setting in pairs(AutoDrive.settings) do
         if setting.isVehicleSpecific then
-            schemaSavegame:register(XMLValueType.INT,  xmlPath.."#" .. settingName, setting.text, setting.default)
+            schemaSavegame:register(XMLValueType.INT,  "vehicles.vehicle(?).AutoDrive#" .. settingName, setting.text, setting.default)
         end
     end
-
     schemaSavegame:register(XMLValueType.STRING, "vehicles.vehicle(?).AutoDrive#groups", "groups")
     schemaSavegame:register(XMLValueType.INT, "vehicles.vehicle(?).AutoDrive#mode", "mode")
     schemaSavegame:register(XMLValueType.INT, "vehicles.vehicle(?).AutoDrive#firstMarker", "firstMarker")
@@ -228,7 +226,7 @@ function AutoDrive:onPostLoad(savegame)
 -- Logging.info("[AD] AutoDrive:onPostLoad savegame.xmlFile ->%s<-", tostring(savegame.xmlFile))
             local xmlFile = savegame.xmlFile
             -- local xmlFile = loadXMLFile("vehicleXML", savegame.xmlFile)
-            local key = savegame.key .. AutoDrive.baseXmlKey
+            local key = savegame.key .. ".AutoDrive"
 -- Logging.info("[AD] AutoDrive:onPostLoad key ->%s<-", tostring(key))
             -- print("Trying to load xml keys from: " .. key)
 
@@ -484,14 +482,12 @@ function AutoDrive:onUpdate(dt)
     self.ad.mapMarkerSelected_Unload = self.ad.stateModule:getSecondMarkerId()
 end
 
-function AutoDrive:saveToXMLFile(xmlFile, adKey, usedModNames)
+function AutoDrive:saveToXMLFile(xmlFile, key, usedModNames)
     if self.ad == nil or self.ad.stateModule == nil then
         return
     end
 
-    local adKey = string.gsub(adKey, "FS22_AutoDrive.AutoDrive", "AutoDrive")
-
-
+    local adKey = string.gsub(key, "FS22_AutoDrive.AutoDrive", "AutoDrive")
 
     --if not xmlFile:hasProperty(key) then
         --xmlFile:setValue(adKey, {})
