@@ -2,8 +2,6 @@
 --- Connects two waypoints.
 ---@class ADBrushStraightLine : ADBrushConnect
 ADBrushStraightLine = {
-	imageFilename ="textures/input_record_4.dds",
-	name = "straight",
 	DELAY = 1, --- The mouse event oscillates.., so we have to wait one update tick before release is allowed.
 	MIN_DIST = 2,
 	MAX_DIST = 20,

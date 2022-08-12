@@ -147,6 +147,8 @@ source(Utils.getFilename("scripts/Editor/Brushes/Waypoints/DeleteWaypoint.lua", 
 source(Utils.getFilename("scripts/Editor/Brushes/Waypoints/MoveWaypoint.lua", g_currentModDirectory))
 source(Utils.getFilename("scripts/Editor/Brushes/Waypoints/StraightLineWaypoints.lua", g_currentModDirectory))
 source(Utils.getFilename("scripts/Editor/Brushes/Waypoints/CurveLineWaypoints.lua", g_currentModDirectory))
+source(Utils.getFilename("scripts/Editor/Brushes/Waypoints/MoveAdvancedWaypoint.lua", g_currentModDirectory))
+source(Utils.getFilename("scripts/Editor/Brushes/Waypoints/CloneWaypoints.lua", g_currentModDirectory))
 
 source(Utils.getFilename("scripts/Editor/Brushes/Destinations/CreateDestination.lua", g_currentModDirectory))
 source(Utils.getFilename("scripts/Editor/Brushes/Destinations/RenameDestination.lua", g_currentModDirectory))
