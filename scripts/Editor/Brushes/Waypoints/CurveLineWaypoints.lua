@@ -2,8 +2,6 @@
 --- Connects two waypoints.
 ---@class ADBrushCurve : ADBrushStraightLine
 ADBrushCurve = {
-	imageFilename ="textures/input_record_4.dds",
-	name = "curve",
 	DELAY = 100,
 	MIN_OFFSET = -1,
 	MAX_OFFSET = 1,
