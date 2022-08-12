@@ -2,8 +2,6 @@
 --- Connects two waypoints.
 ---@class ADBrushConnect : ADBrush
 ADBrushConnect = {
-	imageFilename ="textures/input_record_2.dds",
-	name = "connect",
 	TYPE_NORMAL = 1,
 	TYPE_LOW_PRIO = 2,
 	TYPE_CROSSING = 3,
