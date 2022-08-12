@@ -2,8 +2,7 @@
 --- Moves a waypoint relative to the mouse position.
 ---@class ADBrushMove : ADBrush
 ADBrushMove = {
-	imageFilename ="textures/input_record_3.dds",
-	name = "move",
+
 }
 local ADBrushMove_mt = Class(ADBrushMove,ADBrush)
 function ADBrushMove.new(customMt,cursor)

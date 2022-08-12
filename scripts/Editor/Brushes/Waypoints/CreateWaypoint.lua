@@ -2,8 +2,6 @@
 --- Creates a new waypoint at the mouse position.
 ---@class ADBrushCreate : ADBrush
 ADBrushCreate = {
-	imageFilename ="textures/plusSign.dds",
-	name = "create",
 }
 local ADBrushCreate_mt = Class(ADBrushCreate,ADBrush)
 function ADBrushCreate.new(customMt,cursor)

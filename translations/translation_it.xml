@@ -332,6 +332,11 @@
 		<text name="gui_ad_editor_advanced_straight_type_crossing_route"			text="Crossing route"/>
 		<text name="gui_ad_editor_advanced_straight_type_sub_crossing_route"		text="Crossing sub route"/>
 
+		<text name="gui_ad_editor_advanced_moveAdvanced_title"						text="Moves multiple waypoints"/>
+		<text name="gui_ad_editor_advanced_moveAdvanced_primary_text"				text="Moves the waypoints relative to the mouse position."/>
+		<text name="gui_ad_editor_advanced_moveAdvanced_secondary_text"				text="Selects waypoints to move."/>
+		<text name="gui_ad_editor_advanced_moveAdvanced_tertiary_text"				text="Resets the selected waypoints."/>
+
 		<text name="gui_ad_editor_destinations_createDestination_title"				text="Create destination"/>
 		<text name="gui_ad_editor_destinations_createDestination_primary_text"		text="Create destination"/>
 		<text name="gui_ad_editor_destinations_createDestination_input_title"		text="New destination"/>

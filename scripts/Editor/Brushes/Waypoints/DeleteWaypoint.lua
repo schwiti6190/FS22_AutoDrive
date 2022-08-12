@@ -2,8 +2,7 @@
 --- Creates a new waypoint at the mouse position.
 ---@class ADBrushDelete : ADBrush
 ADBrushDelete = {
-	imageFilename ="textures/input_removeWaypoint.dds",
-	name = "delete",
+	
 }
 local ADBrushDelete_mt = Class(ADBrushDelete,ADBrush)
 function ADBrushDelete.new(customMt,cursor)
