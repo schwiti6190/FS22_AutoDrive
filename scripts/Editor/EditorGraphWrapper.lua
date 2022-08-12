@@ -123,6 +123,13 @@ function ADEditorGraphWrapper:setPosition(id, x, y, z, sendEvent)
 	self.graphManager:moveWayPoint(id, x, y, z, self:getPoint(id).flags, sendEvent)
 end
 
+function ADEditorGraphWrapper:translateTo(id, dx, dy, dz, sendEvent)
+	local x, y, z = self:getPosition(id)
+	local nx, nz = x + dx, z + dz
+	local _, _, ny, _ = RaycastUtil.raycastClosest(x, y + dy + 4, z, 0, -1, 0, GuiTopDownCursor.RAYCAST_DISTANCE, CollisionMask.ALL - CollisionMask.TRIGGERS - CollisionFlag.FILLABLE - CollisionFlag.GROUND_TIP_BLOCKING) 
+	self.graphManager:moveWayPoint(id, nx, ny, nz, self:getPoint(id).flags, sendEvent)
+end
+
 function ADEditorGraphWrapper:setSubPriority(id, priority, sendEvent)
 	self.graphManager:setSubPrio(id, priority, sendEvent)
 end

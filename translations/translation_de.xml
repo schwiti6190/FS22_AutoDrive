@@ -342,6 +342,11 @@
 		<text name="gui_ad_editor_advanced_straight_type_crossing_route"			text="Hauptstrecke 2-Weg"/>
 		<text name="gui_ad_editor_advanced_straight_type_sub_crossing_route"		text="Nebenstrecke 2-Weg"/>
 
+		<text name="gui_ad_editor_advanced_moveAdvanced_title"						text="Bewegt mehrere Wegpunkte"/>
+		<text name="gui_ad_editor_advanced_moveAdvanced_primary_text"				text="Bewegt die Wegpunkte relative zur Mausposition."/>
+		<text name="gui_ad_editor_advanced_moveAdvanced_secondary_text"				text="Wählt mehrere Wegpunkte aus."/>
+		<text name="gui_ad_editor_advanced_moveAdvanced_tertiary_text"				text="Setzt die ausgewählten Wegpunkte zurück."/>
+
 		<text name="gui_ad_editor_destinations_createDestination_title"				text="Erstelle Zielpunkt"/>
 		<text name="gui_ad_editor_destinations_createDestination_primary_text"		text="Erstelle Zielpunkt"/>
 		<text name="gui_ad_editor_destinations_createDestination_input_title"		text="Neuen Zielpunkt"/>
