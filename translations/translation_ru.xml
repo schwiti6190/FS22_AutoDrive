@@ -277,9 +277,6 @@
 		<text name="gui_ad_debugChannelBGA"						text="Режим BGA" />
 		<text name="gui_ad_debugChannelTrains"					text="Поезда" />
 		<text name="gui_ad_debugChannelAll" 					text="Все" />
-<<<<<<< HEAD
-		
-=======
 
 		<!-- Ad editor -->
 		<text name="gui_ad_editor_title"											text="Autodrive"/>
@@ -346,7 +343,6 @@
 		<text name="gui_ad_editor_destinations_renameDestination_primary_text"		text="Rename destination"/>
 		<text name="gui_ad_editor_destinations_renameDestination_input_title"		text="Rename destination (%s)"/>
 
->>>>>>> 331c692 (Translations)
 		<text name="gui_ad_notificationHistoryTitle" 			text="Уведомления" />
 		
 		<text name="gui_ad_colorSettingsTitle" 					text="Назначение цветов" />
