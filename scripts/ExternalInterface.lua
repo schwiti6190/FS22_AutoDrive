@@ -596,6 +596,7 @@ function AutoDrive:hasAL(object)
         return false
     end
     return object.spec_aPalletAutoLoader ~= nil and object.spec_aPalletAutoLoader.loadArea ~= nil and object.spec_aPalletAutoLoader.loadArea["baseNode"] ~= nil
+            or object.spec_universalAutoload ~=nil and object.spec_universalAutoload.isAutoloadEnabled
 end
 
 --[[
@@ -612,6 +613,11 @@ function AutoDrive:setALOn(object)
         -- set loading state off
         AutoDrive.debugPrint(object, AutoDrive.DC_EXTERNALINTERFACEINFO, "AutoDrive:setALOn SetLoadingState 2")
         object:SetLoadingState(2)
+    else
+        local spec = object.spec_aPalletAutoLoader
+        if spec and object.ualStartLoad then 
+            object:ualStartLoad()
+        end
     end
 end
 
@@ -625,6 +631,11 @@ function AutoDrive:setALOff(object)
         -- set loading state off
         AutoDrive.debugPrint(object, AutoDrive.DC_EXTERNALINTERFACEINFO, "AutoDrive:setALOff SetLoadingState 1")
         object:SetLoadingState(1)
+    else
+        local spec = object.spec_aPalletAutoLoader
+        if spec and object.ualStopLoad then 
+            object:ualStopLoad()
+        end
     end
 end
 
@@ -696,6 +707,8 @@ function AutoDrive:unloadAL(object)
                 end
                 -- set loading state off
                 object:unloadAll()
+            elseif object.spec_universalAutoload and object.ualUnload then 
+                object:ualUnload(unloadPositionSetting == 2 and "left" or unloadPositionSetting == 4 and "right")
             end
         end
     end
@@ -729,14 +742,26 @@ function AutoDrive:getALObjectFillLevels(object) -- used by getIsFillUnitEmpty, 
     local fillCapacity = 0
     local fillLevel = 0
     local fillFreeCapacity = 0
+    local filledToUnload = AutoDrive.isUnloadFillLevelReached(rootVehicle, fillFreeCapacity, fillCapacity)
     local spec = object.spec_aPalletAutoLoader
     if spec and AutoDrive:hasAL(object) and object.getFillUnitCapacity and object.getFillUnitFillLevel and object.getFillUnitFreeCapacity then
         fillCapacity = object:getFillUnitCapacity()
         fillLevel = object:getFillUnitFillLevel()
         fillFreeCapacity = object:getFillUnitFreeCapacity()
+        filledToUnload = AutoDrive.isUnloadFillLevelReached(rootVehicle, fillFreeCapacity, fillCapacity)
         AutoDrive.debugPrint(object, AutoDrive.DC_EXTERNALINTERFACEINFO, "AutoDrive:getALObjectFillLevels fillCapacity %s fillLevel %s fillFreeCapacity %s", tostring(fillCapacity), tostring(fillLevel), tostring(fillFreeCapacity))
+    elseif AutoDrive:hasAL(object) and object.spec_universalAutoload and object.ualIsFull then
+        if object:ualIsFull() then 
+            fillCapacity = 100
+            fillLevel = 100
+            fillFreeCapacity = 0
+        else
+            fillCapacity = 100
+            fillLevel = 13
+            fillFreeCapacity = 87
+        end
+        filledToUnload = object:ualIsFull()
     end
-    local filledToUnload = AutoDrive.isUnloadFillLevelReached(rootVehicle, fillFreeCapacity, fillCapacity)
     return fillLevel, fillCapacity, filledToUnload, fillFreeCapacity
 end
 
@@ -756,6 +781,8 @@ function AutoDrive:getALFillTypes(object) -- used by PullDownList, getSupportedF
                 end
             end
         end
+    elseif AutoDrive:hasAL(object) and object.spec_universalAutoload then
+        return {"--"}
     end
     AutoDrive.debugPrint(vehicle, AutoDrive.DC_EXTERNALINTERFACEINFO, "AutoDrive:getALFillTypes #fillTypes %s", tostring(#fillTypes))
     return fillTypes
@@ -770,7 +797,7 @@ function AutoDrive:getALCurrentFillType(object) -- used by onEnterVehicle, onPos
     if spec and AutoDrive:hasAL(object) and spec.currentautoLoadTypeIndex then
         return spec.currentautoLoadTypeIndex
     end
-    return nil
+    return 1
 end
 
 function AutoDrive:setALFillType(vehicle, fillType) -- used by PullDownList
