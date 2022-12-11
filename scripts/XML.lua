@@ -285,7 +285,7 @@ function AutoDrive.saveToXML(xmlFile)
 
 	-- setXMLFloat(xmlFile, "AutoDrive.HudX", AutoDrive.HudX)
 	-- setXMLFloat(xmlFile, "AutoDrive.HudY", AutoDrive.HudY)
-	-- setXMLBool(xmlFile, "AutoDrive.HudShow", AutoDrive.Hud.showHud)
+	setXMLBool(xmlFile, "AutoDrive.HudShow", AutoDrive.Hud.showHud)
 
 	setXMLInt(xmlFile, "AutoDrive.currentDebugChannelMask", AutoDrive.currentDebugChannelMask)
 
