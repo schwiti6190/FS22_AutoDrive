@@ -776,8 +776,8 @@ function AutoDrive.isImplementAllowedForReverseDriving(vehicle,implement)
         end
     end
 
-    if implement ~= nil and implement.spec_attachable ~= nil
-        and AttacherJoints.JOINTTYPE_IMPLEMENT == implement.spec_attachable.attacherJoint.jointType
+    if implement ~= nil and implement.spec_attachable ~= nil and implement.spec_attachable.attacherJoint ~= nil and implement.spec_attachable.attacherJoint.jointType ~= nil
+        and AttacherJoints.JOINTTYPE_IMPLEMENT == implement.spec_attachable.attacherJoint.jointType 
     then
         local breakforce = implement.spec_attachable:getBrakeForce()
         -- Logging.info("[AD] isImplementAllowedForReverseDriving implement breakforce %s ", tostring(breakforce))
@@ -788,8 +788,8 @@ function AutoDrive.isImplementAllowedForReverseDriving(vehicle,implement)
         end
     end
 
-    if implement ~= nil and implement.spec_attachable ~= nil
-        and AttacherJoints.JOINTTYPE_SEMITRAILER == implement.spec_attachable.attacherJoint.jointType
+    if implement ~= nil and implement.spec_attachable ~= nil and implement.spec_attachable.attacherJoint ~= nil and implement.spec_attachable.attacherJoint.jointType ~= nil
+        and AttacherJoints.JOINTTYPE_SEMITRAILER == implement.spec_attachable.attacherJoint.jointType 
     then
         local implementX, implementY, implementZ = getWorldTranslation(implement.components[1].node)
         local _, _, diffZ = worldToLocal(vehicle.components[1].node, implementX, implementY, implementZ)
