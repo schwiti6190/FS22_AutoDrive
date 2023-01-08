@@ -94,5 +94,5 @@ end
 
 function ADBrush:debug(str, ...)
 	--- TODO: add proper debug!
-	--print(string.format("AD brush(%s/%s): ".. str, g_time, g_updateLoopIndex, ...))	
+	print(string.format("AD brush(%s/%s): ".. str, g_time, g_updateLoopIndex, ...))	
 end

@@ -35,7 +35,7 @@ end
 
 function ADBrushCurve:moveWaypoints()
 	local x, y, z = self.cursor:getPosition()
-	if x == nil then 
+	if x == nil or y == nil or z == nil then 
 		return
 	end
 
@@ -44,7 +44,6 @@ function ADBrushCurve:moveWaypoints()
 
 	local dist = MathUtil.vector2Length(x-tx,z-tz)
 
-	local spacing = 2
 
 	local nx, nz = MathUtil.vector2Normalize(x-tx, z-tz)
 	if nx == nil or nz == nil then 
@@ -67,10 +66,8 @@ function ADBrushCurve:moveWaypoints()
 	local halfDist = MathUtil.vector2Length(cx - tx, cz - tz)
 
 	local dt = 2/(1.5*halfDist)
-
-	local n = math.ceil(halfDist/spacing)
-	spacing = halfDist/n
-
+	local max = math.floor(1/dt)
+	dt = 1/max
 	local points = {
 		{
 			tx,

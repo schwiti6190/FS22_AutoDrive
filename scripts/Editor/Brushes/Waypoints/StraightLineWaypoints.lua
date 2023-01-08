@@ -30,9 +30,10 @@ function ADBrushStraightLine:onButtonPrimary(isDown, isDrag, isUp)
 					self:debug("Start with node: %d", nodeId)
 				else 
 					local x, y, z = self.cursor:getPosition()	
-					local newNodeId = self:createWaypoint(1, x, y, z)
-					self.graphWrapper:setSubPriority(newNodeId, self:getSubPriority(), false)
-					self:debug("Start with new node: %d", newNodeId)
+					if x ~= nil and y ~= nil and z ~= nil then
+						local newNodeId = self:createWaypoint(1, x, y, z)
+						self:debug("Start with new node: %d", newNodeId)
+					end
 				end
 			end
 			self.delay = g_updateLoopIndex + self.DELAY
@@ -44,13 +45,15 @@ function ADBrushStraightLine:onButtonPrimary(isDown, isDrag, isUp)
 	end
 
 	if isUp then 
-		if g_updateLoopIndex > self.delay and #self.sortedWaypoints>0  then 
+		if g_updateLoopIndex > self.delay then 
 			self:debug("Finished drawing of %d waypoints.", #self.sortedWaypoints)
-			local oldNodeId = self:getOldHoveredNodeId()
-			if oldNodeId then 
+			local nodeId = self:getHoveredNodeId()
+			if nodeId ~= nil and not self.waypoints[nodeId] and #self.sortedWaypoints > 1 then 
+				self:debug("Removing the last node!")
 				self:removeWayPoint(self.sortedWaypoints[#self.sortedWaypoints])
-				table.insert(self.sortedWaypoints, oldNodeId)
-				self.waypoints[oldNodeId] = true
+				self.waypoints[nodeId] = true
+				self:connectWaypoints(self.sortedWaypoints[#self.sortedWaypoints], nodeId, true)
+				table.insert(self.sortedWaypoints,nodeId)
 			end
 			self:sendEvent()
 			self.waypoints = {}
@@ -87,28 +90,24 @@ end
 
 function ADBrushStraightLine:moveWaypoints()
 	local x, y, z = self.cursor:getPosition()
-	if x == nil then 
+	if x == nil or y == nil or z == nil then 
 		return
 	end
 	local tx, _, tz = self.graphWrapper:getPosition(self.sortedWaypoints[1])
 
 	local dist = MathUtil.vector2Length(x-tx,z-tz)
-
-	local spacing = self.spacing
-
 	local nx, nz = MathUtil.vector2Normalize(x-tx, z-tz)
-	
 	if nx == nil or nz == nil then 
 		nx = 0
 		nz = 1
 	end
 
-	local n = math.max(math.ceil(dist/spacing), 2)
+	local n = math.max(math.ceil(dist/self.spacing), 1)
 
-	spacing = dist/n
+	local spacing = dist/n
 
-	for i=2, n + 1 do 
-		self:moveSingleWaypoint(i, tx+nx*(i-1)*spacing, y, tz+nz*(i-1)*spacing)
+	for i=1,n+1 do 
+		self:moveSingleWaypoint(i+1, tx+nx*i*spacing, y, tz+nz*i*spacing)
 	end
 	self:deleteNotUsedWaypoints(n + 1)
 end
@@ -118,6 +117,7 @@ function ADBrushStraightLine:moveSingleWaypoint(i, x, y, z)
 	local _,y2,_ = self.graphWrapper:getPosition(self.sortedWaypoints[#self.sortedWaypoints])
 	local ny = math.abs(y1 - y2)
 	local _, _, dy, _ = RaycastUtil.raycastClosest(x, y + ny + 4, z, 0, -1, 0, GuiTopDownCursor.RAYCAST_DISTANCE, self.cursor.rayCollisionMask) 
+	dy = dy ~= nil and dy or math.max(y1, y2)
 	local prevId = self.sortedWaypoints[i-1]
 	if self.sortedWaypoints[i] == nil then 
 		local nodeId = self:createWaypoint(i, x, y, z)
@@ -136,6 +136,7 @@ function ADBrushStraightLine:createWaypoint(i, x, y, z)
 	else 
 		nodeId = self.graphWrapper:addPoint(x, y, z)
 	end
+	self.graphWrapper:setSubPriority(nodeId, self:getSubPriority(), false)
 	self.waypoints[nodeId] = true
 	table.insert(self.sortedWaypoints,nodeId)
 	return nodeId
@@ -144,7 +145,15 @@ end
 function ADBrushStraightLine:removeWayPoint(id)
 	self.graphWrapper:setDisabled(id)
 	self.waypoints[id] = false
-	table.remove(self.sortedWaypoints)
+	local foundIx
+	for ix, nodeId in ipairs(self.sortedWaypoints) do 
+		if nodeId == id then 
+			foundIx = ix
+		end
+	end
+	if foundIx then 
+		table.remove(self.sortedWaypoints, foundIx)
+	end
 end
 
 function ADBrushStraightLine:deleteNotUsedWaypoints(n)

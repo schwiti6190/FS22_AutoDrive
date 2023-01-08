@@ -14,6 +14,9 @@ end
 function ADBrushCreate:onButtonPrimary()
 	if not self:getHoveredNodeId() then 
 		local x, y, z = self.cursor:getPosition()
+		if x == nil or y == nil or z == nil then 
+			return
+		end
 		self.graphWrapper:addPoint(x, y, z)
 	end
 end
