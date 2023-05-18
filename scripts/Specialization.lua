@@ -486,7 +486,6 @@ function AutoDrive:saveToXMLFile(xmlFile, key, usedModNames)
     if self.ad == nil or self.ad.stateModule == nil then
         return
     end
-
     local adKey = string.gsub(key, "FS22_AutoDrive.AutoDrive", "AutoDrive")
 
     --if not xmlFile:hasProperty(key) then
@@ -500,8 +499,13 @@ function AutoDrive:saveToXMLFile(xmlFile, key, usedModNames)
         if setting.isVehicleSpecific and self.ad.settings ~= nil and self.ad.settings[settingName] ~= nil then
             xmlFile:setValue(adKey .. "#" .. settingName, self.ad.settings[settingName].current)
         end
+    end
 
     if self.ad.groups ~= nil then
+        local combinedString = ""
+        for groupName, _ in pairs(ADGraphManager:getGroups()) do
+            for myGroupName, value in pairs(self.ad.groups) do
+                if groupName == myGroupName then
                     if string.len(combinedString) > 0 then
                         combinedString = combinedString .. ";"
                     end
@@ -516,6 +520,7 @@ function AutoDrive:saveToXMLFile(xmlFile, key, usedModNames)
         xmlFile:setValue(adKey .. "#groups", combinedString)
     end
 end
+
 
 function AutoDrive:onDraw()
     if AutoDrive.getSetting("showHUD") then
