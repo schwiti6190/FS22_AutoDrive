@@ -166,8 +166,21 @@ function ADEditorGraphWrapper:setConnection(nodeId, targetNodeId, type, sendEven
 end
 
 function ADEditorGraphWrapper:setConnectionAndSubPriority(nodeId, targetNodeId, type, priority, sendEvent)
-	self:setConnection(nodeId, targetNodeId, type, sendEvent)
-	self:setSubPriority(targetNodeId, priority, sendEvent)
+	if( type == 0 ) then 
+		--- Clears the connection
+		local startNode, targetNode = self:getPoint(nodeId), self:getPoint(targetNodeId)
+		if table.contains(startNode.out, targetNode.id) or table.contains(targetNode.incoming, startNode.id) then
+			--- Only toggle, if a connection was there.
+			self.graphManager:toggleConnectionBetween(startNode, targetNode, false, sendEvent)
+		end
+		if table.contains(targetNode.out, startNode.id) or table.contains(startNode.incoming, targetNode.id) then
+			--- Only toggle, if a connection was there.
+			self.graphManager:toggleConnectionBetween(targetNode, startNode, false, sendEvent)
+		end
+	else 
+		self:setConnection(nodeId, targetNodeId, type, sendEvent)
+		self:setSubPriority(targetNodeId, priority, sendEvent)
+	end
 end
 
 function ADEditorGraphWrapper:synchronize(id)

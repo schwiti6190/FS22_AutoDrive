@@ -302,6 +302,8 @@
 		<text name="gui_ad_editor_basic_connect_type_reverse_sub_route"				text="Reverse sub route"/>
 		<text name="gui_ad_editor_basic_connect_type_crossing_route"				text="Crossing route"/>
 		<text name="gui_ad_editor_basic_connect_type_sub_crossing_route"			text="Crossing sub route"/>
+		<text name="gui_ad_editor_basic_connect_type_disconnect_route"				text="Disconnect route"/>
+
 
 		<text name="gui_ad_editor_basic_create_title"								text="Create"/>
 		<text name="gui_ad_editor_basic_create_primary_text"						text="Create a waypoint"/>
