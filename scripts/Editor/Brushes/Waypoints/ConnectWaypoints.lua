@@ -8,8 +8,9 @@ ADBrushConnect = {
 	TYPE_CROSSING_LOW_PRIO = 4,
 	TYPE_REVERSE_NORMAL = 5,
 	TYPE_REVERSE_LOW_PRIO = 6,
+	TYPE_DISCONNECT = 7,
 	TYPE_MIN = 1,
-	TYPE_MAX = 6,
+	TYPE_MAX = 7,
 }
 ADBrushConnect.typeTexts = {
 	[ADBrushConnect.TYPE_NORMAL] = "type_normal",
@@ -18,6 +19,7 @@ ADBrushConnect.typeTexts = {
 	[ADBrushConnect.TYPE_REVERSE_LOW_PRIO] = "type_reverse_sub_route",
 	[ADBrushConnect.TYPE_CROSSING] = "type_crossing_route",
 	[ADBrushConnect.TYPE_CROSSING_LOW_PRIO] = "type_sub_crossing_route",
+	[ADBrushConnect.TYPE_DISCONNECT] = "type_disconnect_route",
 }
 
 local ADBrushConnect_mt = Class(ADBrushConnect,ADBrush)
@@ -79,6 +81,8 @@ function ADBrushConnect:getCurrentConnectionType()
 		dir = 3
 	elseif self.mode == self.TYPE_REVERSE_NORMAL or self.mode == self.TYPE_REVERSE_LOW_PRIO then 
 		dir = 4
+	elseif self.mode == self.TYPE_DISCONNECT then 
+		dir = 0
 	end
 	return dir
 end
