@@ -15,7 +15,7 @@
 			<Brush name="renameDestination" class="ADBrushRenameDestination" title="$l10n_gui_ad_editor_brush_renameDestination_name" iconFilename="textures/input_editMapMarker_1.dds"/>
 			<Brush name="deleteDestination" class="ADBrushDeleteDestination" title="$l10n_gui_ad_editor_brush_deleteDestination_name" iconFilename="textures/input_removeMapMarker_1.dds"/>
 		</Tab>
-        <!-- <Tab name="advanced" title="$l10n_gui_ad_editor_advanced_title" iconFilename="textures/input_record_3.dds"  refSize="128 128">
+        <!-- <Tab name="advanced" title="$l10n_gui_ad_editor_basic_title" iconFilename="textures/input_record_3.dds"  refSize="128 128">
 			
 		</Tab> -->
     </Category>
