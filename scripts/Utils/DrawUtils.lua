@@ -51,7 +51,7 @@ function ADDrawUtils.drawSingleWaypoint(point, hoveredId, selectedIds, disabledI
         --- and a second cube there for moving the node position.
         if AutoDrive.getSettingState("lineHeight") > 1 then
             local gy = y - AutoDrive.drawHeight - AutoDrive.getSetting("lineHeight")
-            ADDrawingManager:addLineTask(x, y, z, x, gy, z, unpack(AutoDrive.currentColors.ad_color_editorHeightLine))
+            ADDrawingManager:addLineTask(x, y, z, x, gy, z, 1, unpack(AutoDrive.currentColors.ad_color_editorHeightLine))
 
             ADDrawingManager:addSphereTask(x, gy, z, 3, unpack(color))
         end
@@ -93,11 +93,10 @@ function ADDrawUtils.drawWaypointConnections(point, disabledIds)
         for _, neighbor in pairs(point.out) do
             if not disabledIds[neighbor] then
                 pointsDrawn[neighbor] = true
-                local target = ADGraphManager:getWayPointById(neighbor)
+                local nWp = ADGraphManager:getWayPointById(neighbor)
                 local targetIsSubRouteWp = ADGraphManager:getIsPointSubPrio(neighbor)
-                if target ~= nil then
+                if nWp ~= nil then
                     --check if outgoing connection is a dual way connection
-                    local nWp = ADGraphManager:getWayPointById(neighbor)
                     if point.incoming == nil or table.contains(point.incoming, neighbor) then
                         --draw dual way line
                         if point.id > nWp.id then
@@ -106,7 +105,7 @@ function ADDrawUtils.drawWaypointConnections(point, disabledIds)
                             else
                                 color = colors.ad_color_dualConnection       
                             end
-                            ADDrawingManager:addLineTask(x, y, z, nWp.x, nWp.y, nWp.z, unpack(color))
+                            ADDrawingManager:addLineTask(x, y, z, nWp.x, nWp.y, nWp.z, 1, unpack(color))
                         end
                     else
                         --draw line with direction markers (arrow)
@@ -121,8 +120,8 @@ function ADDrawUtils.drawWaypointConnections(point, disabledIds)
                             -- reverse way line
                             color = colors.ad_color_reverseConnection
                         end
-                        ADDrawingManager:addLineTask(x, y, z, nWp.x, nWp.y, nWp.z, unpack(color))
-                        ADDrawingManager:addArrowTask(x, y, z, nWp.x, nWp.y, nWp.z, arrowPosition, unpack(color))
+                        ADDrawingManager:addLineTask(x, y, z, nWp.x, nWp.y, nWp.z, 1, unpack(color))
+                        ADDrawingManager:addArrowTask(x, y, z, nWp.x, nWp.y, nWp.z, 1, arrowPosition, unpack(color))
                     end
                 end
             end
