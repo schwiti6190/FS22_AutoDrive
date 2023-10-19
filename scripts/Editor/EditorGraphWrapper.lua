@@ -93,7 +93,7 @@ function ADEditorGraphWrapper:draw(position)
 end
 
 function ADEditorGraphWrapper:updateVisiblePoints(position)
-	self.visiblePoints = AdWaypointUtils.getWayPointsInRange(position,  0, AutoDrive.drawDistance)
+	self.visiblePoints = AdWaypointUtils.getWayPointsInRange(position,  0, 250)
 end
 
 function ADEditorGraphWrapper:getVisiblePoints()
