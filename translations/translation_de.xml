@@ -296,7 +296,7 @@
 		<text name="gui_ad_editor_title"											text="Autodrive"/>
 		<text name="gui_ad_editor_basic_title"										text="Basic"/>
 		<text name="gui_ad_editor_destinations_title"								text="Ziele"/>
-		<text name="gui_ad_editor_advanced_title"									text="Erweitert"/>
+		<text name="gui_ad_editor_basic_title"									text="Erweitert"/>
 
 		<!-- Ad editor brushes -->
 		<text name="gui_ad_editor_basic_connect_title"								text="Verbinden"/>
@@ -313,18 +313,18 @@
 		<text name="gui_ad_editor_basic_create_title"								text="Erstellen"/>
 		<text name="gui_ad_editor_basic_create_primary_text"						text="Erstellt ein Wegpunkt"/>
 
-		<text name="gui_ad_editor_advanced_curve_title"								text="Kurve"/>
-		<text name="gui_ad_editor_advanced_curve_primary_text"						text="Erzeugt eine Kurve mit Wegpunkten"/>
-		<text name="gui_ad_editor_advanced_curve_secondary_text"					text="Radius Modifier(%dx)"/>
-		<text name="gui_ad_editor_advanced_curve_primary_axis_text"					text="Ändert den Offset (%d %%)"/>
-		<text name="gui_ad_editor_advanced_curve_secondary_axis_text"				text="Verschiebt den Kurvenmittelpunkt(%d %%)"/>
-		<text name="gui_ad_editor_advanced_curve_tertiary_text"						text="Ändere Streckentyp (%s)"/>
-		<text name="gui_ad_editor_advanced_curve_type_normal"						text="Hauptstrecke"/>
-		<text name="gui_ad_editor_advanced_curve_type_sub_route"					text="Nebenstrecke"/>
-		<text name="gui_ad_editor_advanced_curve_type_reverse_route"				text="Hauptstrecke rückwärts"/>
-		<text name="gui_ad_editor_advanced_curve_type_reverse_sub_route"			text="Nebenstrecke rückwärts"/>
-		<text name="gui_ad_editor_advanced_curve_type_crossing_route"				text="Hauptstrecke 2-Weg"/>
-		<text name="gui_ad_editor_advanced_curve_type_sub_crossing_route"			text="Nebenstrecke 2-Weg"/>
+		<text name="gui_ad_editor_basic_curve_title"								text="Kurve"/>
+		<text name="gui_ad_editor_basic_curve_primary_text"						text="Erzeugt eine Kurve mit Wegpunkten"/>
+		<text name="gui_ad_editor_basic_curve_secondary_text"					text="Radius Modifier(%dx)"/>
+		<text name="gui_ad_editor_basic_curve_primary_axis_text"					text="Ändert den Offset (%d %%)"/>
+		<text name="gui_ad_editor_basic_curve_secondary_axis_text"				text="Verschiebt den Kurvenmittelpunkt(%d %%)"/>
+		<text name="gui_ad_editor_basic_curve_tertiary_text"						text="Ändere Streckentyp (%s)"/>
+		<text name="gui_ad_editor_basic_curve_type_normal"						text="Hauptstrecke"/>
+		<text name="gui_ad_editor_basic_curve_type_sub_route"					text="Nebenstrecke"/>
+		<text name="gui_ad_editor_basic_curve_type_reverse_route"				text="Hauptstrecke rückwärts"/>
+		<text name="gui_ad_editor_basic_curve_type_reverse_sub_route"			text="Nebenstrecke rückwärts"/>
+		<text name="gui_ad_editor_basic_curve_type_crossing_route"				text="Hauptstrecke 2-Weg"/>
+		<text name="gui_ad_editor_basic_curve_type_sub_crossing_route"			text="Nebenstrecke 2-Weg"/>
 
 		<text name="gui_ad_editor_delete_title"										text="Löschen"/>
 		<text name="gui_ad_editor_delete_primary_text"								text="Löscht einen Wegpunkt"/>
@@ -333,22 +333,22 @@
 		<text name="gui_ad_editor_basic_move_title"									text="Bewegen"/>
 		<text name="gui_ad_editor_basic_move_primary_text"							text="Bewegt einen Wegpunkt"/>
 
-		<text name="gui_ad_editor_advanced_straight_title"							text="Gerade Linie"/>
-		<text name="gui_ad_editor_advanced_straight_primary_text"					text="Eine gerade Linie"/>
-		<text name="gui_ad_editor_advanced_straight_secondary_text"					text="Radius Modifier(%dx)"/>
-		<text name="gui_ad_editor_advanced_straight_primary_axis_text"				text="Ändert den Abstand (%d)"/>
-		<text name="gui_ad_editor_advanced_straight_tertiary_text"					text="Ändere Streckentyp (%s)"/>
-		<text name="gui_ad_editor_advanced_straight_type_normal"					text="Hauptstrecke"/>
-		<text name="gui_ad_editor_advanced_straight_type_sub_route"					text="Nebenstrecke"/>
-		<text name="gui_ad_editor_advanced_straight_type_reverse_route"				text="Hauptstrecke rückwärts"/>
-		<text name="gui_ad_editor_advanced_straight_type_reverse_sub_route"			text="Nebenstrecke rückwärts"/>
-		<text name="gui_ad_editor_advanced_straight_type_crossing_route"			text="Hauptstrecke 2-Weg"/>
-		<text name="gui_ad_editor_advanced_straight_type_sub_crossing_route"		text="Nebenstrecke 2-Weg"/>
+		<text name="gui_ad_editor_basic_straight_title"							text="Gerade Linie"/>
+		<text name="gui_ad_editor_basic_straight_primary_text"					text="Eine gerade Linie"/>
+		<text name="gui_ad_editor_basic_straight_secondary_text"					text="Radius Modifier(%dx)"/>
+		<text name="gui_ad_editor_basic_straight_primary_axis_text"				text="Ändert den Abstand (%d)"/>
+		<text name="gui_ad_editor_basic_straight_tertiary_text"					text="Ändere Streckentyp (%s)"/>
+		<text name="gui_ad_editor_basic_straight_type_normal"					text="Hauptstrecke"/>
+		<text name="gui_ad_editor_basic_straight_type_sub_route"					text="Nebenstrecke"/>
+		<text name="gui_ad_editor_basic_straight_type_reverse_route"				text="Hauptstrecke rückwärts"/>
+		<text name="gui_ad_editor_basic_straight_type_reverse_sub_route"			text="Nebenstrecke rückwärts"/>
+		<text name="gui_ad_editor_basic_straight_type_crossing_route"			text="Hauptstrecke 2-Weg"/>
+		<text name="gui_ad_editor_basic_straight_type_sub_crossing_route"		text="Nebenstrecke 2-Weg"/>
 
-		<text name="gui_ad_editor_advanced_moveAdvanced_title"						text="Bewegt mehrere Wegpunkte"/>
-		<text name="gui_ad_editor_advanced_moveAdvanced_primary_text"				text="Bewegt die Wegpunkte relative zur Mausposition."/>
-		<text name="gui_ad_editor_advanced_moveAdvanced_secondary_text"				text="Wählt mehrere Wegpunkte aus."/>
-		<text name="gui_ad_editor_advanced_moveAdvanced_tertiary_text"				text="Setzt die ausgewählten Wegpunkte zurück."/>
+		<text name="gui_ad_editor_basic_moveAdvanced_title"						text="Bewegt mehrere Wegpunkte"/>
+		<text name="gui_ad_editor_basic_moveAdvanced_primary_text"				text="Bewegt die Wegpunkte relative zur Mausposition."/>
+		<text name="gui_ad_editor_basic_moveAdvanced_secondary_text"				text="Wählt mehrere Wegpunkte aus."/>
+		<text name="gui_ad_editor_basic_moveAdvanced_tertiary_text"				text="Setzt die ausgewählten Wegpunkte zurück."/>
 
 		<text name="gui_ad_editor_destinations_createDestination_title"				text="Erstelle Zielpunkt"/>
 		<text name="gui_ad_editor_destinations_createDestination_primary_text"		text="Erstelle Zielpunkt"/>
