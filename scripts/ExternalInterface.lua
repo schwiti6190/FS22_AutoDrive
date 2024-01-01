@@ -208,10 +208,10 @@ function AutoDrive:notifyDestinationListeners()
     AutoDrive.triggerStaticOutput()
 end
 
-function AutoDrive:combineIsCallingDriver(combine)	--only for CoursePlay
-	local openPipe,_ = ADHarvestManager.getOpenPipePercent(combine)
-	return openPipe or ADHarvestManager.doesHarvesterNeedUnloading(combine, true)
-end
+--function AutoDrive:combineIsCallingDriver(combine)	--only for CoursePlay
+	--local openPipe,_ = ADHarvestManager.getOpenPipePercent(combine)
+	--return openPipe or ADHarvestManager.doesHarvesterNeedUnloading(combine, true)
+--end
 
 function AutoDrive:getCombineOpenPipePercent(combine)	--for AIVE
 	local _, pipePercent = ADHarvestManager.getOpenPipePercent(combine)
